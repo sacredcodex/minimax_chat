@@ -90,7 +90,8 @@ def price(model):
         return 0.005
 
 if __name__ == '__main__':
-    core = Core('知识查询助手')
+    model_name = input('模型设置文件名称：')
+    core = Core(model_name)
     content = 'help'
     new_conversation = True
     while True:
