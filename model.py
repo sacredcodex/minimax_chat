@@ -1,7 +1,6 @@
 import json
 
 
-
 def create_model(name="知识查询助手",type="abab5.5s-chat", ttg=256, temp=0.01, topp=0.95):
     model = {
         'name' : name,
@@ -16,4 +15,9 @@ def create_model(name="知识查询助手",type="abab5.5s-chat", ttg=256, temp=0
         json.dump(model, file, ensure_ascii=False, indent=4)
 
 if __name__ == '__main__':
+    name = input("模型名字(文件名\称呼)：")
+    type = input("模型类型(abab6-chat, abab5.5-chat, abab5.5s-chat, 以上3选1):")
+    ttq = input("模型生成上限:")
+    temp = input("temperature(0~1,越高创造性越强，越低准确性越强):")
+    topp = input("top_p(越大越随机):")
     create_model()
