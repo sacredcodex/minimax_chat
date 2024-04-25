@@ -2,12 +2,14 @@ import requests
 import json
 import time
 from datetime import datetime
+import os
 
 class Core:
     def __init__(self, model_file_name = 'chat1.json'):
         if not model_file_name.endswith('.json'):
             model_file_name += '.json'
-        with open('user.json', 'r') as file:
+        model_file_name = 'model\\'+model_file_name
+        with open('user\\user.json', 'r') as file:
             user = json.load(file)
         self.user_name = user['name']
         self.url = "https://api.minimax.chat/v1/text/chatcompletion_pro?GroupId=" + user['group_id']
@@ -58,7 +60,9 @@ class Core:
         self.res = res
         #保存
         created_time = res['created']
-        with open(f"{created_time}.json", "w", encoding="utf-8") as fp:
+        if not os.path.exists("received"):
+            os.makedirs("received")
+        with open(f"received\\{created_time}.json", "w", encoding="utf-8") as fp:
             json.dump(res, fp, ensure_ascii=False, indent=4)
 
         reply_message = res['choices'][0]['messages'][0]
@@ -69,7 +73,9 @@ class Core:
         self.save(reply_content, self.model_name)
 
     def save(self, message_content, name):
-        with open(self.dialog_file, 'a') as f:
+        if not os.path.exists("dialogs"):
+            os.makedirs("dialogs")
+        with open("dialogs\\"+self.dialog_file, 'a') as f:
             print(name, ":", message_content, file = f)
             print('\n', file = f)
 
@@ -112,4 +118,3 @@ if __name__ == '__main__':
             core.send(content, new_conversation)
             new_conversation = False
         content = input()
-
