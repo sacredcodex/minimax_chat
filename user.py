@@ -1,4 +1,5 @@
 import json
+import os
 
 # 补充用户信息
 if __name__ == '__main__':
@@ -10,5 +11,8 @@ if __name__ == '__main__':
         'group_id': group_id,
         'api_key': api_key}
 
-    with open('user.json', 'w') as file:
+    if not os.path.exists("user"):
+       os.makedirs("user")
+
+    with open('user\\user.json', 'w+') as file:
         json.dump(user, file, ensure_ascii=False, indent=4)
