@@ -1,5 +1,5 @@
 import json
-
+import os
 
 def create_model(name="知识查询助手",type="abab5.5s-chat", ttg=256, temp=0.01, topp=0.95):
     model = {
@@ -11,7 +11,9 @@ def create_model(name="知识查询助手",type="abab5.5s-chat", ttg=256, temp=0
         'top_p' : float(topp)
     }
     print(model)
-    with open(f'{name}.json', 'w+') as file:
+    if not os.path.exists("model"):
+       os.makedirs("model")
+    with open(f'model\\{name}.json', 'w+') as file:
         json.dump(model, file, ensure_ascii=False, indent=4)
 
 if __name__ == '__main__':
