@@ -7,13 +7,20 @@
 并制作了一个消费记录文档。
 
 ## 使用
-需要安装python，用到的包应该都是内置的，如果运行缺少包报错，可以尝试：
+**新**：
+可以从下面链接下载zip文件，解压运行，不再需要安装python
+
+https://github.com/sacredcodex/minimax_chat/releases/tag/minimax_chat
+
+<del> 需要安装python，用到的包应该都是内置的，如果运行缺少包报错，可以尝试：
 ```
 pip install json
 pip install requests
 pip install time
 pip install datetime
 ```
+
+</del>
 首次使用
 1. 创建user信息
    运行user.py,按照提示输入信息，运行结束会生成一个user.json文件，文件包括个人账户信息，请注意妥善保管，避免泄露给他人
